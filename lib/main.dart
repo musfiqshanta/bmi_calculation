@@ -13,10 +13,10 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'BMI Calculatior',
       theme: ThemeData(
-          primaryColor: const Color(0xff090D22),
-          scaffoldBackgroundColor: const Color(0xff090D22),
-          ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+        primaryColor: const Color(0xff090D22),
+        scaffoldBackgroundColor: const Color(0xff090D22),
+      ),
+      home: const MyHomePage(title: 'BMI Calculator'),
     );
   }
 }
@@ -33,12 +33,16 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: const Color(0xff090D22),
-        title: Text(widget.title),
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: Scaffold(
+        backgroundColor: Colors.black45,
+        appBar: AppBar(
+          backgroundColor: const Color(0xff090D22),
+          title: Text(widget.title),
+        ),
+        body: const InputPage(),
       ),
-      body: const InputPage(),
     );
   }
 }

@@ -1,11 +1,8 @@
-// ignore_for_file: must_be_immutable
-
 import 'package:bmi/pages/calculation.dart';
 import 'package:bmi/pages/result.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
-import 'roundButton.dart';
+import 'roundbutton.dart';
 
 enum Gender { male, female }
 
@@ -17,8 +14,8 @@ class InputPage extends StatefulWidget {
 }
 
 class _InputPageState extends State<InputPage> {
-  Color inactivecolor = Color.fromARGB(221, 33, 26, 26);
-  Color active = Color.fromRGBO(0, 0, 0, 1);
+  Color inactivecolor = const Color.fromARGB(221, 33, 26, 26);
+  Color active = const Color.fromRGBO(0, 0, 0, 1);
   bool click = false;
   Color? cardColor;
   int? value;
@@ -130,8 +127,19 @@ class _InputPageState extends State<InputPage> {
                 ),
               ],
             ),
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.baseline,
+              textBaseline: TextBaseline.alphabetic,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  (height * 0.0328084).toStringAsFixed(1) + " Foot",
+                  style: textStyle,
+                ),
+              ],
+            ),
             SliderTheme(
-              data: SliderThemeData(
+              data: const SliderThemeData(
                   thumbColor: Colors.pink,
                   activeTrackColor: Colors.pink,
                   overlayColor: Color.fromARGB(107, 222, 39, 100),
@@ -142,7 +150,6 @@ class _InputPageState extends State<InputPage> {
                   value: height.toDouble(),
                   onChanged: (double x) => setState(() {
                         height = x;
-                        print(value);
                       })),
             )
           ],
@@ -156,18 +163,18 @@ class _InputPageState extends State<InputPage> {
                 cardChild: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text(
+                    const Text(
                       "WEIGHT",
                       style: textStyle,
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 10,
                     ),
                     Text(
                       weight.toString(),
                       style: bigStyle,
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 10,
                     ),
                     Row(
@@ -201,11 +208,11 @@ class _InputPageState extends State<InputPage> {
                       cardChild: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text(
+                          const Text(
                             "AGE",
                             style: textStyle,
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 10,
                           ),
                           Text(age.toString(), style: bigStyle),
@@ -246,11 +253,12 @@ class _InputPageState extends State<InputPage> {
                 builder: (context) => Result(
                       bmir: bmi.bmical(),
                       msg: bmi.mess(),
+                      recomanded: bmi.recomandation(),
                     )));
           },
           child: Padding(
             padding: const EdgeInsets.all(20.0),
-            child: Container(
+            child: SizedBox(
                 width: MediaQuery.of(context).size.width,
                 child: const Text(
                   "Calculation",
@@ -265,10 +273,10 @@ class _InputPageState extends State<InputPage> {
 }
 
 class UseCard extends StatelessWidget {
-  UseCard({Key? key, required this.cardChild, required this.color})
+  const UseCard({Key? key, required this.cardChild, required this.color})
       : super(key: key);
   final Widget cardChild;
-  Color color;
+  final Color color;
   @override
   Widget build(BuildContext context) {
     return Card(
